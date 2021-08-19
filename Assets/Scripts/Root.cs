@@ -6,6 +6,7 @@ namespace PingPong
     {
         [SerializeField] private MobileInput _input;
         [SerializeField] private Paddle _paddle;
+        [SerializeField] private Paddle _paddle1;
         [SerializeField] private Camera _uiCamera;
         [SerializeField] private Camera _mainCamera;
 
@@ -13,6 +14,7 @@ namespace PingPong
         {
             _input.Init(_uiCamera);
             _paddle.Init(_input, _mainCamera);
+            _paddle1.Init(_input, _mainCamera);
         }
     } 
 }
