@@ -18,6 +18,7 @@ namespace PingPong
 
             edgeBuilder.CreateEdge(
                 "LeftBorder",
+                false,
                 transform,
                 new Vector2(lDCorner.x, lDCorner.y),
                 new Vector2(lDCorner.x, rUCorner.y)
@@ -25,32 +26,27 @@ namespace PingPong
 
             edgeBuilder.CreateEdge(
                 "RightBorder",
+                false,
                 transform,
                 new Vector2(rUCorner.x, rUCorner.y),
                 new Vector2(rUCorner.x, lDCorner.y)
                 );
             
-            MakeEdgeAsTrigger(
-                edgeBuilder.CreateEdge(
+            edgeBuilder.CreateEdge(
                 "TopTrigger",
+                true,
                 transform,
                 new Vector2(lDCorner.x, lDCorner.y),
                 new Vector2(lDCorner.x, rUCorner.y)
-                ));
-
-            MakeEdgeAsTrigger(
-                edgeBuilder.CreateEdge(
+                ).gameObject.AddComponent<OutTrigger>();
+            
+            edgeBuilder.CreateEdge(
                 "BottomTrigger",
+                true,
                 transform,
                 new Vector2(lDCorner.x, lDCorner.y),
                 new Vector2(lDCorner.x, rUCorner.y)
-                ));
-        }
-
-        private void MakeEdgeAsTrigger(EdgeCollider2D edge)
-        {
-            edge.isTrigger = true;
-            edge.gameObject.AddComponent<OutTrigger>();
+                ).gameObject.AddComponent<OutTrigger>();
         }
     }
 }
