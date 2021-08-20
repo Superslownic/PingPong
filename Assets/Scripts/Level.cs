@@ -18,12 +18,14 @@ namespace PingPong
 
             edgeBuilder.CreateEdge(
                 "LeftBorder",
+                transform,
                 new Vector2(lDCorner.x, lDCorner.y),
                 new Vector2(lDCorner.x, rUCorner.y)
                 );
 
             edgeBuilder.CreateEdge(
                 "RightBorder",
+                transform,
                 new Vector2(rUCorner.x, rUCorner.y),
                 new Vector2(rUCorner.x, lDCorner.y)
                 );
@@ -31,6 +33,7 @@ namespace PingPong
             MakeEdgeAsTrigger(
                 edgeBuilder.CreateEdge(
                 "TopTrigger",
+                transform,
                 new Vector2(lDCorner.x, lDCorner.y),
                 new Vector2(lDCorner.x, rUCorner.y)
                 ));
@@ -38,6 +41,7 @@ namespace PingPong
             MakeEdgeAsTrigger(
                 edgeBuilder.CreateEdge(
                 "BottomTrigger",
+                transform,
                 new Vector2(lDCorner.x, lDCorner.y),
                 new Vector2(lDCorner.x, rUCorner.y)
                 ));

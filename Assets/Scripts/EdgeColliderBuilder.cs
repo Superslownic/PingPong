@@ -11,5 +11,13 @@ namespace PingPong
 
             return edge;
         }
+
+        public EdgeCollider2D CreateEdge(string name, Transform parent, params Vector2[] points)
+        {
+            EdgeCollider2D edge = CreateEdge(name, points);
+            edge.transform.parent = parent;
+
+            return edge;
+        }
     }
 }
