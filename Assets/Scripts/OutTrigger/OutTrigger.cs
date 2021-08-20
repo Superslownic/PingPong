@@ -9,7 +9,7 @@ namespace PingPong
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.transform.HasComponent<ITarget>())
+            if (other.transform.HasComponent<ITargetView>())
                 OnOut?.Invoke();
         }
     }
