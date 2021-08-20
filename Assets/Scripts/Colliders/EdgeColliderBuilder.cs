@@ -8,6 +8,7 @@ namespace PingPong
         {
             EdgeCollider2D edge = new GameObject(name).AddComponent<EdgeCollider2D>();
             edge.points = points;
+            edge.isTrigger = isTrigger;
 
             return edge;
         }

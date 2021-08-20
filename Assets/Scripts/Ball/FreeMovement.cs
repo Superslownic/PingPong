@@ -32,7 +32,7 @@ namespace PingPong
 
         public void SetPosition(Vector2 position)
         {
-            _transform.position = position;
+            _transform.localPosition = position;
         }
 
         public void Stop()

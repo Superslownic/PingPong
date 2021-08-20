@@ -3,26 +3,33 @@ using UnityEngine;
 
 namespace PingPong
 {
-    public class Ball : MonoBehaviour, IResettable
+    public class Ball : MonoBehaviour, ITarget
     {
         [SerializeField] private float _radius;
         [SerializeField] private float _speed;
         
         private FreeMovement _movement;
-
-        public event Action OnReset;
-
-        void IResettable.Reset()
-        {
-            OnReset?.Invoke();
-        }
-
-        private void Awake()
+        
+        public void Init()
         {
             _movement = new FreeMovement(transform, _speed);
-            _movement.SetDirection(UnityEngine.Random.insideUnitCircle.normalized);
         }
 
+        public void Push(Vector2 direction)
+        {
+            _movement.SetDirection(direction);
+        }
+
+        public void SetPosition(Vector2 position)
+        {
+            _movement.SetPosition(position);
+        }
+
+        public void Stop()
+        {
+            _movement.Stop();
+        }
+        
         private void FixedUpdate()
         {
             _movement.Update(Time.fixedDeltaTime);

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using UnityEngine;
 
 namespace PingPong
 {
-    public interface IResettable
+    public interface ITarget
     {
-        event Action OnReset;
-        void Reset();
+        void Stop();
+        void SetPosition(Vector2 position);
+        void Push(Vector2 direction);
     }
 }

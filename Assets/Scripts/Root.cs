@@ -17,7 +17,8 @@ namespace PingPong
             _input.Init(_uiCamera);
             _paddle.Init(_input, _mainCamera);
             _paddle1.Init(_input, _mainCamera);
-            _level.Init(_mainCamera);
+            _ball.Init();
+            _level.Init(_mainCamera, _ball);
         }
     } 
 }
