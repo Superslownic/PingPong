@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 281456621098216269}
   - component: {fileID: 281456621098216268}
   - component: {fileID: 281456621098216271}
-  - component: {fileID: 281456621098216266}
+  - component: {fileID: 132567579984178099}
   m_Layer: 0
   m_Name: Paddle
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 281456621098216270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 6.07, y: 1}
+  m_Size: {x: 2, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -102,7 +102,7 @@ BoxCollider2D:
     border: {x: 0.796875, y: 0, z: 0.796875, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.90625, y: 0.9375}
-    newSize: {x: 6.07, y: 1}
+    newSize: {x: 2, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
     adaptiveTiling: 0
@@ -110,7 +110,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.07, y: 1}
   m_EdgeRadius: 0
---- !u!114 &281456621098216266
+--- !u!114 &132567579984178099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,6 +119,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 281456621098216270}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8c87524240a9bf4390e024a66dda041, type: 3}
+  m_Script: {fileID: 11500000, guid: 2284ee50d6e848d468a9c1f978d30f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

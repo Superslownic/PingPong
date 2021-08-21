@@ -2,11 +2,11 @@
 
 namespace PingPong
 {
-    public class BouncingZeroGravity : IMovementStrategy
+    public class LinearBouncing : IMovementStrategy
     {
         public Vector2 Velocity { get; private set; }
 
-        public BouncingZeroGravity()
+        public LinearBouncing()
         {
             Velocity = Vector2.zero;
         }

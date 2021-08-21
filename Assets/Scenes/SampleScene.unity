@@ -369,13 +369,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: 483311262}
-  _paddle: {fileID: 921224596}
-  _paddle1: {fileID: 1428643270}
+  _paddleView1: {fileID: 281456622014131935}
+  _paddleView2: {fileID: 1744759561}
   _uiCamera: {fileID: 895495725}
   _mainCamera: {fileID: 519420031}
   _level: {fileID: 82343652}
   _skinContainer: {fileID: 11400000, guid: 0d216120353f50c44920ff383923ade2, type: 2}
-  _parametersContainer: {fileID: 11400000, guid: 4d6f27e0e02f87843a476d58f675bb1b, type: 2}
+  _targetParametersContainer: {fileID: 11400000, guid: 4d6f27e0e02f87843a476d58f675bb1b, type: 2}
+  _paddleParametersContainer: {fileID: 11400000, guid: 65266495f9e92864d9529cfb10d90ece, type: 2}
 --- !u!4 &885071149
 Transform:
   m_ObjectHideFlags: 0
@@ -469,28 +470,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 281456621098216269, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
   m_PrefabInstance: {fileID: 281456622014131934}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &921224596 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 281456621098216266, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
-  m_PrefabInstance: {fileID: 281456622014131934}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8c87524240a9bf4390e024a66dda041, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1428643270 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 281456621098216266, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
-  m_PrefabInstance: {fileID: 1744759559}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8c87524240a9bf4390e024a66dda041, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1570006945
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,10 +652,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 281456621098216268, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
-      propertyPath: m_Size.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 281456621098216268, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: cef3d4ce6d6371e40abdfd973981ea31, type: 3}
@@ -726,15 +701,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 281456621098216270, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
       propertyPath: m_Name
-      value: Paddle (1)
+      value: Paddle (2)
       objectReference: {fileID: 0}
     - target: {fileID: 281456621098216271, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
       propertyPath: m_Size.x
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 281456621098216271, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.x
+      value: 0.3984375
+      objectReference: {fileID: 0}
+    - target: {fileID: 281456621098216271, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.z
+      value: 0.3984375
+      objectReference: {fileID: 0}
+    - target: {fileID: 281456621098216271, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 281456621098216271, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.953125
+      objectReference: {fileID: 0}
+    - target: {fileID: 281456621098216271, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.46875
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
@@ -743,6 +734,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 281456621098216269, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
   m_PrefabInstance: {fileID: 1744759559}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1744759561 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 132567579984178099, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
+  m_PrefabInstance: {fileID: 1744759559}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2284ee50d6e848d468a9c1f978d30f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1959140741
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,10 +787,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 281456621098216266, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
       propertyPath: _width
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 281456621098216268, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
-      propertyPath: m_Size.x
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 281456621098216268, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
@@ -841,15 +839,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 281456621098216270, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
       propertyPath: m_Name
-      value: Paddle
+      value: Paddle (1)
       objectReference: {fileID: 0}
     - target: {fileID: 281456621098216271, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
       propertyPath: m_Size.x
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 281456621098216271, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.x
+      value: 0.3984375
+      objectReference: {fileID: 0}
+    - target: {fileID: 281456621098216271, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.z
+      value: 0.3984375
+      objectReference: {fileID: 0}
+    - target: {fileID: 281456621098216271, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 281456621098216271, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 281456621098216271, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.953125
+      objectReference: {fileID: 0}
+    - target: {fileID: 281456621098216271, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.46875
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
+--- !u!114 &281456622014131935 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 132567579984178099, guid: b97f97c9c4c009e49aae7041e3b944fb, type: 3}
+  m_PrefabInstance: {fileID: 281456622014131934}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2284ee50d6e848d468a9c1f978d30f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

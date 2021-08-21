@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -5,10 +6,11 @@ namespace PingPong
 {
     public class MobileInput : MonoBehaviour, IInput, IPointerDownHandler, IDragHandler
     {
+        public event Action<float> OnDrag;
+        public event Action<float> OnPointerDown;
+
         private Camera _camera;
-
-        public Vector3 TouchPosition { get; private set; }
-
+        
         public void Init(Camera camera)
         {
             _camera = camera;
@@ -16,17 +18,12 @@ namespace PingPong
 
         void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
         {
-            CalculatePosition(eventData);
+            OnPointerDown(_camera.ScreenToWorldPoint(eventData.position).x);
         }
 
         void IDragHandler.OnDrag(PointerEventData eventData)
         {
-            CalculatePosition(eventData);
-        }
-
-        private void CalculatePosition(PointerEventData eventData)
-        {
-            TouchPosition = _camera.ScreenToWorldPoint(eventData.position);
+            OnDrag(_camera.ScreenToWorldPoint(eventData.position).x);
         }
     }
 }

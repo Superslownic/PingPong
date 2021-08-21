@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5b01b3313f6ea84f924bf4082a3f5f1, type: 3}
-  m_Name: SmallAndSlow
+  m_Script: {fileID: 11500000, guid: da8698c40697f93469e5350e75e06613, type: 3}
+  m_Name: Small
   m_EditorClassIdentifier: 
-  speed: 250
-  size: {x: 0.5, y: 0.5, z: 0.5}
+  size: {x: 1, y: 0.5}

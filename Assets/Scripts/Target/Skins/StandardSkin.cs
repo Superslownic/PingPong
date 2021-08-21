@@ -4,7 +4,8 @@ namespace PingPong
 {
     public class StandardSkin : TargetView
     {
-        protected override void LocalAwake() {}
-        protected override void LocalOnCollisionEnter(Collision2D collision) { }
+        protected override void ForwardedAwake() {}
+        protected override void ForwardedOnCollisionEnter(Collision2D collision) { }
+        protected override void ForwardedReset() { }
     }
 }

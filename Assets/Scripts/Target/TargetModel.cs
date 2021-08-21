@@ -2,24 +2,17 @@
 
 namespace PingPong
 {
-    public class TargetModel : ITargetModel
+    public class TargetModel : Updatable
     {
         private IMovementStrategy _movement;
-        private ITargetView _view;
+        private TargetView _view;
         private float _speed;
 
-        public TargetModel()
+        public TargetModel(TargetView view)
         {
-            _movement = new BouncingZeroGravity();
-        }
-
-        public void SetSkin(TargetView view)
-        {
-            if (_view != null)
-                _view.Destroy();
-
-            _view = Object.Instantiate(view);
-            Subscribe();
+            _movement = new LinearBouncing();
+            _view = view;
+            _view.OnCollisionEnter += _movement.Bounce;
         }
 
         public void SetParameters(TargetParameters parameters)
@@ -33,9 +26,9 @@ namespace PingPong
             _movement.SetDirection(direction);
         }
 
-        public void SetPosition(Vector2 position)
+        public void Reset(Vector2 position)
         {
-            _view.SetPosition(position);
+            _view.Reset(position);
         }
 
         public void Move(float deltaTime)
@@ -47,19 +40,10 @@ namespace PingPong
         {
             _movement.Stop();
         }
-        
-        private void Unsubscribe()
-        {
-            _view.OnUpdate -= Move;
-            _view.OnCollisionEnter -= _movement.Bounce;
-            _view.OnDestroyed -= Unsubscribe;
-        }
 
-        private void Subscribe()
+        public override void OnFixedUpdate(float delta)
         {
-            _view.OnUpdate += Move;
-            _view.OnCollisionEnter += _movement.Bounce;
-            _view.OnDestroyed += Unsubscribe;
+            Move(delta);
         }
     }
 }
