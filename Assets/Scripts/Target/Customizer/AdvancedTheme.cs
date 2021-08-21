@@ -9,6 +9,8 @@ namespace PingPong
         public Sprite sprite;
         public Gradient trailColor;
         public float trailLenght;
+        public Color particlesColor;
+        public ParticleSystem.MinMaxGradient particlesTrailColor;
 
         public override void Accept(IThemeVisitor visitor)
         {

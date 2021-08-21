@@ -3,14 +3,16 @@ using UnityEngine;
 
 namespace PingPong
 {
-    [RequireComponent(typeof(SpriteRenderer), typeof(Rigidbody2D), typeof(TrailRenderer))]
+    [RequireComponent(typeof(SpriteRenderer))]
+    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(TrailRenderer))]
+    [RequireComponent(typeof(ParticleSystem))]
     public class AdvancedThemeView : MonoBehaviour, ITargetView
     {
-        [SerializeField] private ParticleSystem _particles;
-
         private SpriteRenderer _renderer;
         private TrailRenderer _trail;
         private Rigidbody2D _rigidbody;
+        private ParticleSystem _particles;
 
         public event Action OnUpdate;
         public event Action<Collision2D> OnCollisionEnter;
@@ -21,6 +23,7 @@ namespace PingPong
             _renderer = GetComponent<SpriteRenderer>();
             _trail = GetComponent<TrailRenderer>();
             _rigidbody = GetComponent<Rigidbody2D>();
+            _particles = GetComponent<ParticleSystem>();
         }
 
         public void Setup(AdvancedTheme theme)
@@ -30,9 +33,9 @@ namespace PingPong
             _trail.colorGradient = theme.trailColor;
             _trail.time = theme.trailLenght;
             ParticleSystem.MainModule main = _particles.main;
-            main.startColor = theme.color;
+            main.startColor = theme.particlesColor;
             ParticleSystem.TrailModule trails = _particles.trails;
-            trails.colorOverTrail = theme.color;
+            trails.colorOverTrail = theme.particlesTrailColor;
         }
 
         public void Move(Vector2 velocity)

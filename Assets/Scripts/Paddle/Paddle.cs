@@ -1,9 +1,12 @@
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace PingPong
 {
     public class Paddle : MonoBehaviour
     {
+        [SerializeField, Range(1, 10), OnValueChanged(nameof(SetWidth))] private float _width;
+
         private IInput _input;
         private float _leftBorder;
         private float _rightBorder;
@@ -12,10 +15,17 @@ namespace PingPong
         {
             _input = input;
 
-            float halfWidth = transform.localScale.x / 2;
+            float width = transform.localScale.x;
 
-            _leftBorder = camera.LeftBorder() + halfWidth;
-            _rightBorder = camera.RightBorder() - halfWidth;
+            _leftBorder = camera.LeftBorder() + width;
+            _rightBorder = camera.RightBorder() - width;
+        }
+
+        public void SetWidth()
+        {
+            Vector2 size = new Vector2(_width, 1);
+            GetComponent<SpriteRenderer>().size = size;
+            GetComponent<BoxCollider2D>().size = size;
         }
 
         private void Update()
