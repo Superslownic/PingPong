@@ -6,22 +6,26 @@ namespace PingPong
     {
         private IMovementStrategy _movement;
         private ITargetView _view;
+        private float _speed;
 
-        public TargetModel(IMovementStrategy movement)
+        public TargetModel()
         {
-            _movement = movement;
+            _movement = new BouncingZeroGravity();
         }
 
-        public void SetTheme(Theme theme)
+        public void SetSkin(TargetView view)
         {
             if (_view != null)
                 _view.Destroy();
 
-            var customizer = new Customizer();
-            theme.Accept(customizer);
-
-            _view = customizer.View;
+            _view = Object.Instantiate(view);
             Subscribe();
+        }
+
+        public void SetParameters(TargetParameters parameters)
+        {
+            _speed = parameters.speed;
+            _view.SetSize(parameters.size);
         }
 
         public void Push(Vector2 direction)
@@ -34,9 +38,9 @@ namespace PingPong
             _view.SetPosition(position);
         }
 
-        public void Move()
+        public void Move(float deltaTime)
         {
-            _view.Move(_movement.Velocity);
+            _view.Move(_movement.Velocity * _speed * deltaTime);
         }
 
         public void Stop()
@@ -44,11 +48,6 @@ namespace PingPong
             _movement.Stop();
         }
         
-        public void Setup(Parameters parameters)
-        {
-            
-        }
-
         private void Unsubscribe()
         {
             _view.OnUpdate -= Move;

@@ -152,7 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90bab55347f6594b8baa2c7c81b2f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _themeContainer: {fileID: 199511924}
 --- !u!4 &82343653
 Transform:
   m_ObjectHideFlags: 0
@@ -168,51 +167,6 @@ Transform:
   - {fileID: 1744759560}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &199511923
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 199511925}
-  - component: {fileID: 199511924}
-  m_Layer: 0
-  m_Name: ThemeContainer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &199511924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199511923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79347a29f499eda4d96593882818650f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _themes:
-  - {fileID: 11400000, guid: cfce83b7aa4463946b0bb15ed9332705, type: 2}
---- !u!4 &199511925
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199511923}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.71588147, y: -3.755582, z: -2.9117358}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &483311260
 GameObject:
@@ -420,6 +374,8 @@ MonoBehaviour:
   _uiCamera: {fileID: 895495725}
   _mainCamera: {fileID: 519420031}
   _level: {fileID: 82343652}
+  _skinContainer: {fileID: 11400000, guid: 0d216120353f50c44920ff383923ade2, type: 2}
+  _parametersContainer: {fileID: 11400000, guid: 4d6f27e0e02f87843a476d58f675bb1b, type: 2}
 --- !u!4 &885071149
 Transform:
   m_ObjectHideFlags: 0

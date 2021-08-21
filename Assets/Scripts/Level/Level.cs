@@ -5,14 +5,16 @@ namespace PingPong
 {
     public class Level : MonoBehaviour
     {
-        [SerializeField] private ThemeContainer _themeContainer;
-
         private ITargetModel _target;
         private List<OutTrigger> _triggers;
+        private SkinContainer _skinContainer;
+        private ParametersContainer _parametersContainer;
 
-        public void Init(Camera mainCamera, ITargetModel target)
+        public void Init(Camera mainCamera, SkinContainer skinContainer, ParametersContainer parametersContainer)
         {
-            _target = target;
+            _skinContainer = skinContainer;
+            _parametersContainer = parametersContainer;
+            _target = new TargetModel();
             _triggers = new List<OutTrigger>();
 
             CreateBorders(mainCamera);
@@ -76,7 +78,8 @@ namespace PingPong
 
         private void ResetLevel()
         {
-            _target.SetTheme(_themeContainer.GetRandomTheme());
+            _target.SetSkin(_skinContainer.GetRandom());
+            _target.SetParameters(_parametersContainer.GetRandom());
             _target.Stop();
             _target.SetPosition(Vector2.zero);
             _target.Push(Random.insideUnitCircle.normalized);

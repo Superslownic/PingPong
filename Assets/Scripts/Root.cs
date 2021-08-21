@@ -10,14 +10,15 @@ namespace PingPong
         [SerializeField] private Camera _uiCamera;
         [SerializeField] private Camera _mainCamera;
         [SerializeField] private Level _level;
+        [SerializeField] private SkinContainer _skinContainer;
+        [SerializeField] private ParametersContainer _parametersContainer;
 
         private void Awake()
         {
             _input.Init(_uiCamera);
             _paddle.Init(_input, _mainCamera);
             _paddle1.Init(_input, _mainCamera);
-            var ballModel = new TargetModel(new BouncingZeroGravity(6));
-            _level.Init(_mainCamera, ballModel);
+            _level.Init(_mainCamera, _skinContainer, _parametersContainer);
         }
     }
 }
