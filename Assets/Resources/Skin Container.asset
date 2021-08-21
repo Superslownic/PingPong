@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Skin Container
   m_EditorClassIdentifier: 
   _skins:
+  - {fileID: 4291354454110188366, guid: a852749a39f5e6d41a4ea9cb8f0ee194, type: 3}
   - {fileID: 803217431886757513, guid: c831041d6a0d94e41bc4e9fc65a39215, type: 3}
   - {fileID: 53287510005095057, guid: e98666e6948f27947bafca5995ab76f9, type: 3}
+  - {fileID: 4291354454110188366, guid: 98452c55e02e0444a8b371d197f4e98c, type: 3}

@@ -25,7 +25,7 @@ namespace PingPong
 
             normal = normal / collision.contacts.Length;
 
-            SetDirection(Vector2.Reflect(Velocity, normal));
+            SetDirection(Vector2.Reflect(Velocity, normal).normalized);
         }
 
         public void Stop()

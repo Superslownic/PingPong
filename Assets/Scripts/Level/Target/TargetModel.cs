@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace PingPong
 {
@@ -8,11 +9,13 @@ namespace PingPong
         private TargetView _view;
         private float _speed;
 
+        public event Action OnPaddleBounce;
+
         public TargetModel(TargetView view)
         {
             _movement = new LinearBouncing();
             _view = view;
-            _view.OnCollisionEnter += _movement.Bounce;
+            _view.OnCollisionEnter += Bounce;
         }
 
         public void SetParameters(TargetParameters parameters)
@@ -44,6 +47,13 @@ namespace PingPong
         public override void OnFixedUpdate(float delta)
         {
             Move(delta);
+        }
+
+        private void Bounce(Collision2D collision)
+        {
+            _movement.Bounce(collision);
+            if (collision.transform.HasComponent<PaddleView>())
+                OnPaddleBounce?.Invoke();
         }
     }
 }

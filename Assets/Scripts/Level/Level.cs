@@ -12,6 +12,7 @@ namespace PingPong
         private SkinContainer _skinContainer;
         private TargetParametersContainer _targetParametersContainer;
         private PaddleParametersContainer _paddleParametersContainer;
+        private ScoreModel _score;
 
         public void Init(
             Camera mainCamera, 
@@ -20,13 +21,15 @@ namespace PingPong
             TargetParametersContainer targetParametersContainer, 
             PaddleParametersContainer paddleParametersContainer, 
             PaddleView paddleView1, 
-            PaddleView paddleView2)
+            PaddleView paddleView2,
+            ScoreView scoreView)
         {
             _skinContainer = targetSkinContainer;
             _targetParametersContainer = targetParametersContainer;
             _paddleParametersContainer = paddleParametersContainer;
             _triggers = new List<OutTrigger>();
 
+            CreateScore(scoreView);
             CreateTarget();
             CreatePaddles(mainCamera, input, paddleParametersContainer, paddleView1, paddleView2);
             CreateBorders(mainCamera);
@@ -43,6 +46,7 @@ namespace PingPong
         private void CreateTarget()
         {
             _target = new TargetModel(Instantiate(_skinContainer.GetRandom()));
+            _target.OnPaddleBounce += _score.AddScore;
         }
 
         private void CreatePaddles(Camera mainCamera, IInput input, PaddleParametersContainer paddleParametersContainer, PaddleView paddleView1, PaddleView paddleView2)
@@ -95,6 +99,12 @@ namespace PingPong
                 ));
         }
 
+        private void CreateScore(ScoreView scoreView)
+        {
+            _score = new ScoreModel(0);
+            scoreView.Ctor(_score);
+        }
+
         private void SetupOutTrigger(EdgeCollider2D edge)
         {
             OutTrigger trigger = edge.gameObject.AddComponent<OutTrigger>();
@@ -108,6 +118,7 @@ namespace PingPong
             _target.Stop();
             _target.Reset(Vector2.zero);
             _target.Push(Random.insideUnitCircle.normalized);
+            _score.ResetScore();
         }
 
         private void SetRandomParameters()

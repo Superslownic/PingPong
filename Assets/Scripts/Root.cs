@@ -13,6 +13,8 @@ namespace PingPong
         [SerializeField] private SkinContainer _skinContainer;
         [SerializeField] private TargetParametersContainer _targetParametersContainer;
         [SerializeField] private PaddleParametersContainer _paddleParametersContainer;
+        [SerializeField] private ScoreModel _scoreModel;
+        [SerializeField] private ScoreView _scoreView;
 
         private void Awake()
         {
@@ -24,7 +26,8 @@ namespace PingPong
                 _targetParametersContainer,
                 _paddleParametersContainer,
                 _paddleView1,
-                _paddleView2);
+                _paddleView2,
+                _scoreView);
         }
     }
 }
