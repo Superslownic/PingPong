@@ -29,5 +29,10 @@ namespace PingPong
                 _paddleView2,
                 _scoreView);
         }
+
+        private void OnApplicationQuit()
+        {
+            GameData.Instance.Save();
+        }
     }
 }

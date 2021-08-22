@@ -9,7 +9,7 @@ namespace PingPong
         
         public ScoreModel(int bestScore)
         {
-            BestScore = bestScore;
+            BestScore = GameData.Instance.Get("BestScore", 0);
             CurrentScore = 0;
         }
 
@@ -45,6 +45,7 @@ namespace PingPong
         {
             BestScore = _currentScore > _bestScore ? _currentScore : _bestScore;
             CurrentScore = 0;
+            GameData.Instance.Set("BestScore", BestScore);
         }
     }
 }
