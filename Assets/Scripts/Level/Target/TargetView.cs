@@ -1,35 +1,21 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace PingPong
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public abstract class TargetView : MonoBehaviour
+    public class TargetView : MonoBehaviour
     {
-        private Rigidbody2D _rigidbody;
-        
-        public event Action<Collision2D> OnCollisionEnter;
+        public UnityEvent<Collision2D> OnCollisionEnter;
 
-        private void Awake()
+        private Rigidbody2D _rigidbody;
+        private TargetModel _model;
+
+        public TargetView Ctor()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
-            ForwardedAwake();
-        }
 
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            OnCollisionEnter?.Invoke(collision);
-            ForwardedOnCollisionEnter(collision);
-        }
-
-        public void Move(Vector2 velocity)
-        {
-            _rigidbody.velocity = velocity;
-        }
-
-        public void Destroy()
-        {
-            Destroy(gameObject);
+            return this;
         }
 
         public void SetSize(Vector3 size)
@@ -37,14 +23,14 @@ namespace PingPong
             transform.localScale = size;
         }
 
-        public void Reset(Vector2 position)
+        public void Move(Vector2 velocity)
         {
-            transform.position = position;
-            ForwardedReset();
+            _rigidbody.velocity = velocity;
         }
-
-        protected abstract void ForwardedAwake();
-        protected abstract void ForwardedOnCollisionEnter(Collision2D collision);
-        protected abstract void ForwardedReset();
+        
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            OnCollisionEnter?.Invoke(collision);
+        }
     }
 }

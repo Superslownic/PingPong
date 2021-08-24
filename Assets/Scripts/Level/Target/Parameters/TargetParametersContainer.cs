@@ -7,9 +7,9 @@ namespace PingPong
     {
         [SerializeField] private TargetParameters[] _parameters;
 
-        public TargetParameters GetRandom()
+        public TargetParameters Any()
         {
-            return _parameters.Anyone();
+            return _parameters.Any();
         }
     }
 }

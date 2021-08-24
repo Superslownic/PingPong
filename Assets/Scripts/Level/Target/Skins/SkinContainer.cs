@@ -1,15 +1,26 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace PingPong
 {
     [CreateAssetMenu]
     public class SkinContainer : ScriptableObject
     {
-        [SerializeField] private TargetView[] _skins;
-        
-        public TargetView GetRandom()
+        [SerializeField] private Skin[] _skins;
+
+        public int Count => _skins.Length;
+
+        public Skin ElementAt(int index)
         {
-            return _skins.Anyone();
+            if (index < 0 || index > _skins.Length - 1)
+                throw new ArgumentOutOfRangeException();
+
+            return _skins[index];
+        }
+
+        public Skin AnySkin()
+        {
+            return _skins.Any();
         }
     }
 }

@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - UILower
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Lower
+    uniqueID: 2571923877
+    locked: 0
+  - name: Upper
+    uniqueID: 4255408253
     locked: 0

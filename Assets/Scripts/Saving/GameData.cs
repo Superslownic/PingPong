@@ -43,6 +43,7 @@ namespace PingPong
             }
             catch (KeyNotFoundException)
             {
+                Set(key, defaultValue);
                 return defaultValue;
             }
         }

@@ -9,19 +9,15 @@ namespace PingPong
         private TargetView _view;
         private float _speed;
 
-        public event Action OnPaddleBounce;
+        public event Action<Collision2D> OnBounce;
 
-        public TargetModel(TargetView view)
+        public TargetModel(TargetView view, TargetParameters parameters)
         {
-            _movement = new LinearBouncing();
             _view = view;
-            _view.OnCollisionEnter += Bounce;
-        }
-
-        public void SetParameters(TargetParameters parameters)
-        {
-            _speed = parameters.speed;
+            _view.OnCollisionEnter.AddListener(Bounce);
             _view.SetSize(parameters.size);
+            _speed = parameters.speed;
+            _movement = new LinearBouncing();
         }
 
         public void Push(Vector2 direction)
@@ -29,31 +25,24 @@ namespace PingPong
             _movement.SetDirection(direction);
         }
 
-        public void Reset(Vector2 position)
+        public void Destroy()
         {
-            _view.Reset(position);
-        }
-
-        public void Move(float deltaTime)
-        {
-            _view.Move(_movement.Velocity * _speed * deltaTime);
-        }
-
-        public void Stop()
-        {
-            _movement.Stop();
+            UnityEngine.Object.Destroy(_view.gameObject);
         }
 
         public override void OnFixedUpdate(float delta)
         {
-            Move(delta);
+            if (_view == null)
+                return;
+
+            Vector2 velocity = _movement.Velocity * _speed * delta;
+            _view.Move(velocity);
         }
 
         private void Bounce(Collision2D collision)
         {
             _movement.Bounce(collision);
-            if (collision.transform.HasComponent<PaddleView>())
-                OnPaddleBounce?.Invoke();
+            OnBounce?.Invoke(collision);
         }
     }
 }

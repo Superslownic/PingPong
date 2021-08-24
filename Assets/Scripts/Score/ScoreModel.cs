@@ -7,7 +7,7 @@ namespace PingPong
         private int _currentScore;
         private int _bestScore;
         
-        public ScoreModel(int bestScore)
+        public ScoreModel()
         {
             BestScore = GameData.Instance.Get("BestScore", 0);
             CurrentScore = 0;

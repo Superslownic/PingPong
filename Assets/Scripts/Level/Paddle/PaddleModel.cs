@@ -27,6 +27,13 @@ namespace PingPong
             _movingRange.max = _borders.max - parameters.HalfSize.x;
         }
 
+        public void Destroy()
+        {
+            Object.Destroy(_view.gameObject);
+            _input.OnPointerDown -= UpdatePosition;
+            _input.OnDrag -= UpdatePosition;
+        }
+
         private void UpdatePosition(float position)
         {
             _view.SetHorizontalPosition(Mathf.Clamp(position, _movingRange.min, _movingRange.max));

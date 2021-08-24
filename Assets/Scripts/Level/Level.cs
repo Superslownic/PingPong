@@ -5,56 +5,67 @@ namespace PingPong
 {
     public class Level : MonoBehaviour
     {
+        [SerializeField] private Transform _targetParent;
+        [SerializeField] private Transform _bottomPaddleParent;
+        [SerializeField] private Transform _topPaddleParent;
+
+        private TargetFactory _targetFactory;
+        private PaddleFactory _paddleFactory;
         private TargetModel _target;
-        private PaddleModel _paddle1;
-        private PaddleModel _paddle2;
+        private PaddleModel _bottomPaddle;
+        private PaddleModel _topPaddle;
         private List<OutTrigger> _triggers;
-        private SkinContainer _skinContainer;
-        private TargetParametersContainer _targetParametersContainer;
-        private PaddleParametersContainer _paddleParametersContainer;
         private ScoreModel _score;
 
-        public void Init(
-            Camera mainCamera, 
-            IInput input, 
-            SkinContainer targetSkinContainer, 
-            TargetParametersContainer targetParametersContainer, 
-            PaddleParametersContainer paddleParametersContainer, 
-            PaddleView paddleView1, 
-            PaddleView paddleView2,
-            ScoreView scoreView)
+        public Level Ctor(TargetFactory targetFactory, PaddleFactory paddleFactory, Camera mainCamera, ScoreModel score)
         {
-            _skinContainer = targetSkinContainer;
-            _targetParametersContainer = targetParametersContainer;
-            _paddleParametersContainer = paddleParametersContainer;
+            _targetFactory = targetFactory;
+            _paddleFactory = paddleFactory;
+            _score = score;
             _triggers = new List<OutTrigger>();
-
-            CreateScore(scoreView);
-            CreateTarget();
-            CreatePaddles(mainCamera, input, paddleParametersContainer, paddleView1, paddleView2);
+            
             CreateBorders(mainCamera);
 
-            ResetLevel();
+            return this;
+        }
+
+        public void Play()
+        {
+            if (_target != null)
+                _target.Destroy();
+
+            _target = _targetFactory.Create(_targetParent);
+            _target.OnBounce += HandleTargetCollision;
+            _target.Push(Random.insideUnitCircle.normalized);
+
+            if (_bottomPaddle != null)
+                _bottomPaddle.Destroy();
+
+            _bottomPaddle = _paddleFactory.Create(_bottomPaddleParent);
+
+            if (_topPaddle != null)
+                _topPaddle.Destroy();
+
+            _topPaddle = _paddleFactory.Create(_topPaddleParent);
+
+            _score.ResetScore();
+        }
+
+        public void Stop()
+        {
+            if (_target != null)
+            {
+                _target.Destroy();
+                _target = null;
+            }
+
+            _score.ResetScore();
         }
         
         private void OnDestroy()
         {
             foreach (var trigger in _triggers)
-                trigger.OnOut -= ResetLevel;
-        }
-
-        private void CreateTarget()
-        {
-            _target = new TargetModel(Instantiate(_skinContainer.GetRandom()));
-            _target.OnPaddleBounce += _score.AddScore;
-        }
-
-        private void CreatePaddles(Camera mainCamera, IInput input, PaddleParametersContainer paddleParametersContainer, PaddleView paddleView1, PaddleView paddleView2)
-        {
-            RangeFloat borders = new RangeFloat(mainCamera.LeftBorder(), mainCamera.RightBorder());
-
-            _paddle1 = new PaddleModel(paddleView1, input, borders);
-            _paddle2 = new PaddleModel(paddleView2, input, borders);
+                trigger.OnOut -= Play;
         }
 
         private void CreateBorders(Camera camera)
@@ -98,37 +109,18 @@ namespace PingPong
                     new Vector2(rUCorner.x, lDCorner.y)
                 ));
         }
-
-        private void CreateScore(ScoreView scoreView)
-        {
-            _score = new ScoreModel(0);
-            scoreView.Ctor(_score);
-        }
-
+        
         private void SetupOutTrigger(EdgeCollider2D edge)
         {
             OutTrigger trigger = edge.gameObject.AddComponent<OutTrigger>();
-            trigger.OnOut += ResetLevel;
+            trigger.OnOut += Play;
             _triggers.Add(trigger);
         }
-
-        private void ResetLevel()
+        
+        private void HandleTargetCollision(Collision2D collision)
         {
-            SetRandomParameters();
-            _target.Stop();
-            _target.Reset(Vector2.zero);
-            _target.Push(Random.insideUnitCircle.normalized);
-            _score.ResetScore();
-        }
-
-        private void SetRandomParameters()
-        {
-            _target.SetParameters(_targetParametersContainer.GetRandom());
-
-            PaddleParameters paddleParameters = _paddleParametersContainer.GetRandom();
-
-            _paddle1.SetParameters(paddleParameters);
-            _paddle2.SetParameters(paddleParameters);
+            if (collision.transform.HasComponent<PaddleView>())
+                _score.AddScore();
         }
     }
 }

@@ -3,18 +3,20 @@ using UnityEngine;
 
 namespace PingPong
 {
-    public class ScoreView : MonoBehaviour, IContructable<ScoreModel>
+    public class ScoreView : MonoBehaviour
     {
-        [SerializeField] private TextMeshPro _currentScore;
-        [SerializeField] private TextMeshPro _bestScore;
+        [SerializeField] private TextMeshProUGUI _currentScore;
+        [SerializeField] private TextMeshProUGUI _bestScore;
 
         private ScoreModel _model;
 
-        public void Ctor(ScoreModel model)
+        public ScoreView Ctor(ScoreModel model)
         {
             _model = model;
             _model.OnCurrentScoreChanged += UpdateCurrentScore;
             _model.OnBestScoreChanged += UpdateBestScore;
+
+            return this;
         }
 
         private void OnDestroy()

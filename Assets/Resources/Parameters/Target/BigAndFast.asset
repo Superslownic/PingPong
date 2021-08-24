@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b01b3313f6ea84f924bf4082a3f5f1, type: 3}
   m_Name: BigAndFast
   m_EditorClassIdentifier: 
-  speed: 400
-  size: {x: 0.8, y: 0.8, z: 0.8}
+  speed: 350
+  size: {x: 0.7, y: 0.7, z: 0.7}
